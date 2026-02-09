@@ -3,7 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>English Meetups — Juntas de conversación en inglés (Avanzado)</title>
+  <link rel="icon" href="https://static.vecteezy.com/system/resources/thumbnails/012/616/631/small/american-flag-us-flag-usa-flag-on-the-circle-shape-format-png.png" type="image/png">
+  <link rel="apple-touch-icon" href="https://TU-URL/tu-icono-180.png">
+  <title>Englo Meetups — conversación en inglés (Avanzado)</title>
   <meta name="description" content="Juntas de conversación en inglés para adultos con nivel avanzado (ideal +40). Grupos reducidos, temas reales, speaking natural. Presencial u online." />
   <meta name="theme-color" content="#ffffff" />
 
@@ -1709,5 +1711,63 @@
 
     })();
   </script>
+
+  <script>
+(() => {
+  // ===== SIEMPRE ARRIBA (especialmente en mobile) =====
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+
+  function forceTop() {
+    // si venís con #pricing u otro hash, lo limpiamos
+    if (location.hash) {
+      // reemplaza la URL sin hash, sin recargar
+      history.replaceState(null, '', location.pathname + location.search);
+    }
+
+    // doble golpe por Safari/Chrome mobile
+    window.scrollTo(0, 0);
+    requestAnimationFrame(() => window.scrollTo(0, 0));
+    setTimeout(() => window.scrollTo(0, 0), 50);
+  }
+
+  // ANTES de que renderice
+  document.addEventListener('DOMContentLoaded', forceTop, { once: true });
+
+  // DESPUÉS de que cargue todo (imágenes pueden empujar layout)
+  window.addEventListener('load', forceTop, { once: true });
+
+  // si el navegador vuelve desde “atrás/adelante” (bfcache)
+  window.addEventListener('pageshow', (e) => {
+    if (e.persisted) forceTop();
+  });
+
+  // ===== tu código actual sigue abajo =====
+
+  const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Year
+  const y = document.getElementById('y');
+  if (y) y.textContent = String(new Date().getFullYear());
+
+  // Smooth internal anchor scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href');
+      if (!id || id === '#') return;
+      const el = document.querySelector(id);
+      if (!el) return;
+      e.preventDefault();
+      el.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+      history.pushState(null, '', id);
+    });
+  });
+
+  // ... el resto de tu script igual ...
+})();
+</script>
+
+
 </body>
 </html>
