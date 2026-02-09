@@ -1,0 +1,1769 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>English Meetups — Juntas de conversación en inglés (Avanzado)</title>
+  <meta name="description" content="Juntas de conversación en inglés para adultos con nivel avanzado (ideal +40). Grupos reducidos, temas reales, speaking natural. Presencial u online." />
+  <meta name="theme-color" content="#ffffff" />
+
+  <style>
+    /* =========================
+       Base
+    ========================= */
+    *{ box-sizing:border-box }
+    html,body{ height:100% }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color: rgb(17 24 39);
+      overflow-x:hidden;
+
+      /* iOS-like soft gradient (no glass) */
+      background:
+        radial-gradient(900px 600px at 50% -10%, rgba(0,0,0,.06), transparent 55%),
+        radial-gradient(700px 520px at 15% 30%, rgba(0,0,0,.05), transparent 55%),
+        radial-gradient(700px 520px at 85% 30%, rgba(0,0,0,.05), transparent 55%),
+        linear-gradient(180deg, #ffffff 0%, #f2f3f5 100%);
+    }
+
+    :root{
+      --ink: rgb(17 24 39);
+      --muted: rgba(17,24,39,.62);
+      --muted2: rgba(17,24,39,.72);
+      --line: rgba(0,0,0,.08);
+      --shadow: 0 24px 60px rgba(0,0,0,.10);
+      --shadowSoft: 0 16px 34px rgba(0,0,0,.10);
+      --radius: 22px;
+      --radiusLg: 30px;
+      --pill: rgba(255,255,255,.92);
+      --blue: rgb(88 110 255);
+      --peach: rgb(255 170 120);
+    }
+
+    a{ color:inherit; text-decoration:none }
+    img{ max-width:100%; display:block }
+    .wrap{ width:min(1120px, calc(100% - 40px)); margin:0 auto }
+    .muted{ color: var(--muted) }
+    .tiny{ font-size:12.5px }
+
+    /* Accessibility */
+    .skip{
+      position:absolute; left:-999px; top:-999px;
+      background:#fff; padding:10px 12px; border-radius:12px;
+      box-shadow: var(--shadowSoft); z-index:1000;
+    }
+    .skip:focus{ left:14px; top:14px }
+
+    /* =========================
+       Topbar (transparent, no border, no shadow)
+    ========================= */
+    .topbar{
+      position:fixed;
+      top:0; left:0; right:0;
+      z-index:100;
+      background: transparent;
+      border:0;
+      box-shadow:none;
+      padding-top: 0px;
+    }
+
+
+    .topbar__inner{
+      display:grid;
+      grid-template-columns: 1fr auto 1fr; /* brand left, nav centered, spacer right */
+      align-items:center;
+      padding: 0px 0;
+      gap: 14px;
+    }
+
+    .brand{
+      justify-self:start;
+      display:flex; align-items:center; gap:10px;
+      min-width: 220px;
+      transform: translatex(-1100px) translateY(30px);
+    }
+
+    .brand__logo{
+      width: 34px; height:34px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .brand__name{
+      font-weight: 170;
+      letter-spacing: -0.02em;
+      margin-left:10px;
+    }
+
+    .nav{
+      justify-self:center;
+      z-index: 20;
+    }
+
+.nav__pill{
+  position:relative;
+  display:flex; align-items:center; gap:8px;
+  padding: 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.92);
+  border: 1px solid rgba(0,0,0,.06);
+  box-shadow: 0 12px 26px rgba(0,0,0,.08);
+}
+
+/* Rectángulo negro que se mueve */
+.nav__pill::before{
+  content:"";
+  position:absolute;
+  top: 6px;
+  bottom: 6px;
+  left: var(--hl-left, 6px);
+  width: var(--hl-width, 92px);
+  background: rgba(17,24,39,.92);
+  border-radius: 999px;
+  transition: left .25s cubic-bezier(.2,.8,.2,1), width .25s cubic-bezier(.2,.8,.2,1);
+  z-index:0;
+}
+
+.nav__link{
+  position:relative;
+  z-index:1;
+}
+
+.nav__link.is-current{
+  color:#fff;
+}
+
+
+    .nav__link{
+      padding: 10px 12px;
+      border-radius: 999px;
+      font-size: 14px;
+      color: rgba(17,24,39,.72);
+      transition: transform .18s ease, background .18s ease, color .18s ease;
+      white-space:nowrap;
+    }
+
+    .nav__link:hover{
+      background: rgba(0,0,0,.05);
+      color: rgba(17,24,39,.92);
+      transform: translateY(-1px);
+    }
+
+    .brand{
+  justify-self:end;        /* a la derecha */
+  grid-column: 3;          /* tercera columna */
+}
+
+.nav{
+  grid-column: 2;          /* centro */
+}
+
+.topbar.is-scrolled .brand{
+  opacity:0;
+  transform: translateY(-10px);
+  pointer-events:none;
+}
+
+.nav__cta{ background: transparent; color: rgba(17,24,39,.72); }
+.nav__cta:hover{ background: rgba(0,0,0,.05); color: rgba(17,24,39,.92); }
+
+
+    .topbar__spacer{ justify-self:end; min-width:220px; }
+
+    /* =========================
+       Buttons / Badges
+    ========================= */
+
+    
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding: 12px 16px;
+      border-radius: 999px;
+      font-weight: 800;
+      letter-spacing:-.01em;
+      border: 1px solid rgba(0,0,0,.10);
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+      box-shadow: 0 12px 24px rgba(0,0,0,.10);
+      background: #fff;
+    }
+    .btn:hover{ transform: translateY(-2px); box-shadow: 0 18px 34px rgba(0,0,0,.12) }
+
+    .btn--primary{
+      background: #F8C160;
+      border-color: rgba(17, 24, 39, 0);
+      color:#fff;
+    }
+    .btn--ghost{
+      background:#fff;
+      color: rgba(17,24,39,.90);
+    }
+
+    .badge{
+      font-size: 13px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,.10);
+      color: rgba(17,24,39,.72);
+      box-shadow: 0 10px 18px rgba(0,0,0,.06);
+    }
+
+    /* =========================
+       Hero
+    ========================= */
+    .hero{
+      position:relative;
+      padding: 28px 0 18px;
+    }
+
+    .hero__center{
+      text-align:center;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap: 14px;
+      padding-top: 0px;
+    }
+
+    /* Joined row centered */
+    .joined{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap: 12px;
+    }
+
+    .avatars{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .avatars img{
+      width: 36px; height:36px;
+      border-radius: 999px;
+      border: 2px solid rgba(255,255,255,.95);
+      margin-left: -10px;
+      box-shadow: 0 10px 16px rgba(0,0,0,.10);
+      object-fit: cover;
+      background:#fff;
+    }
+    .avatars img:first-child{ margin-left:0 }
+
+    .joined__text{
+      font-size: 14px;
+      color: rgba(17,24,39,.70);
+    }
+    .joined__text strong{ color: rgba(17,24,39,.95) }
+
+    /* Title centered */
+    .hero__title{
+      margin: 6px 0 0;
+      font-size: clamp(40px, 4.4vw, 64px);
+      line-height: 1.03;
+      letter-spacing: -0.05em;
+      max-width: 980px;
+    }
+
+    .title__accent{
+      position:relative;
+      display:inline-block;
+      padding-right: 92px;
+    }
+
+    /* Keep integrated SVG in title (requested earlier), but minimal */
+    .title__svg{
+      position:absolute;
+      right:0; bottom: 7px;
+      filter: drop-shadow(0 10px 16px rgba(0,0,0,.10));
+    }
+
+    .hero__subtitle{
+      margin: 0;
+      max-width: 840px;
+      font-size: 16.8px;
+      line-height: 1.7;
+      color: rgba(17,24,39,.72);
+    }
+
+    .hero__actions{
+      display:flex;
+      justify-content:center;
+      gap: 12px;
+      flex-wrap:wrap;
+      margin-top: 6px;
+    }
+
+    .hero__badges{
+      display:flex;
+      justify-content:center;
+      gap: 8px;
+      flex-wrap:wrap;
+      margin-top: 1px;
+      cursor: pointer;
+    }
+
+    /* ===== Overlay central por encima de TODO el hero visual ===== */
+.heroVisual{
+  position:relative; /* ya lo tenías, pero lo dejamos explícito */
+}
+
+.centerOverlay{
+  position:absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, 0%) translatey(190px);
+  width: min(570px, 48vw);
+  z-index: 999; /* por encima del rotator y rightComments */
+  pointer-events:none;
+}
+
+.centerOverlay img{
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 26px 44px rgba(0,0,0,.16));
+  user-select:none;
+}
+
+/* aseguramos orden de capas */
+.rotator{ position:relative; z-index: 10; }
+.heroImageWrap{ position:relative; z-index: 15; }
+.rightComments{ position:absolute; z-index: 20; }
+
+
+    /* =========================
+       Hero Visual Layout
+       - Center: big transparent image (URL)
+       - Right: 2 tilted rounded cards overlapped
+       - Left: rotating vertical list of 5 comment cards with blur outer ones
+    ========================= */
+    .heroVisual{
+      margin-top: 34px;
+      position:relative;
+    }
+
+    .heroVisual__grid{
+      display:grid;
+      grid-template-columns: 320px 1fr 320px;
+      gap: 18px;
+      align-items:center;
+      min-height: 420px;
+    }
+
+    /* Center image */
+    .heroImageWrap{
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height: 420px;
+    }
+
+    /* NUEVO: imagen grande delante (entre columna y tarjetas derecha) */
+    .centerFrontImage{
+      position:absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: min(420px, 60%);
+      height: auto;
+      z-index: 30; /* DELANTE DE TODO */
+      filter: drop-shadow(0 26px 44px rgba(0,0,0,.16));
+      pointer-events:none;
+      user-select:none;
+    }
+
+    .rightComments{ z-index: 12; }
+    .rotator{ z-index: 10; }
+    .heroImageWrap{ z-index: 15; }
+
+
+
+    .heroImage{
+      width: min(720px, 96%);
+      height: auto;
+      filter: drop-shadow(0 30px 50px rgba(0,0,0,.14));
+      transform: translateZ(0);
+      user-select:none;
+      pointer-events:none;
+    }
+
+    /* Right tilted cards */
+    .tiltStack{
+      position:relative;
+      height: 420px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .tiltCard{
+      position:absolute;
+      width: 290px;
+      border-radius: 26px;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,.08);
+      box-shadow: var(--shadowSoft);
+      padding: 16px;
+    }
+
+    .tiltCard--top{
+      transform: rotate(-6deg) translateY(-36px);
+      opacity: .92;
+      z-index: 1;
+    }
+
+    .tiltCard--bottom{
+      transform: rotate(7deg) translateY(22px);
+      z-index: 2;
+    }
+
+    .tiltCard h4{
+      margin: 0 0 8px;
+      font-size: 15px;
+      letter-spacing: -0.01em;
+    }
+
+    /* Fix: no dejar que el parallax pise el centrado */
+    .heroImageWrap .heroImage,
+    .heroImageWrap .centerFrontImage,
+    .rightComments .commentSquare{
+    will-change: transform;
+    }
+
+
+    .tiltCard p{
+      margin:0;
+      color: rgba(17,24,39,.70);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    /* NUEVO: right-side comment squares (2 stacked) */
+    /* NUEVO (reemplazo): 2 comentarios grandes, arriba, superpuestos, inclinación opuesta */
+    .rightComments{
+      position:absolute;
+      right: -120px;   /* MÁS A LA DERECHA */
+      top: 10px;       /* arriba */
+      z-index: 12;
+      width: 360px;
+      height: 380px;
+      pointer-events:none;
+    }
+
+
+    .commentSquare{
+    position:absolute;
+    width: 230px;         /* MÁS GRANDES */
+    height: 230px;
+    border-radius: 28px;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,.08);
+    box-shadow: 0 22px 44px rgba(0,0,0,.12);
+    padding: 16px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    }
+
+    .commentSquare{
+      display:flex;
+      flex-direction:column;
+      justify-content:center; /* centra en vertical */
+      gap: 12px;
+      text-align:center;
+    }
+
+    .csTop{
+      display:flex;
+      justify-content:center;
+    }
+
+    .csTop p{
+      margin:0;
+    }
+
+    .csDivider{
+      width: 100%;
+      height: 1px;
+      background: rgba(0,0,0,.10);
+    }
+
+    .csBottom{
+      display:flex;
+      justify-content:center;
+    }
+
+    .csBottom .miniRow{
+      justify-content:center;
+    }
+
+    .miniRow{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+    }
+
+    .miniMeta{
+      text-align:left;
+    }
+
+
+    .commentSquare p{
+    margin:0;
+    color: rgba(17,24,39,.72);
+    font-size: 14px;
+    line-height: 1.5;
+    }
+
+    /* STACK SUPERPUESTO */
+    .commentSquare--a{
+      top: 0;
+      right: 0;
+      transform: rotate(-8deg);
+      z-index: 1;
+    }
+    .commentSquare--b{
+      top: 190px;
+      right: 60px;
+      transform: rotate(10deg);
+      z-index: 2;
+    }
+
+
+
+
+    .commentSquare p{
+    margin:0;
+    color: rgba(17,24,39,.72);
+    font-size: 13.5px;
+    line-height: 1.45;
+    }
+
+    .commentSquare .miniRow{
+    margin-top: 0;
+    }
+
+
+    .miniRow{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .miniRow img{
+      width: 34px; height:34px;
+      border-radius: 999px;
+      object-fit:cover;
+      border: 2px solid rgba(255,255,255,.95);
+      box-shadow: 0 10px 16px rgba(0,0,0,.10);
+    }
+
+    .miniMeta{
+      display:flex;
+      flex-direction:column;
+      gap: 2px;
+    }
+
+    .miniMeta strong{
+      font-size: 13px;
+      letter-spacing:-.01em;
+    }
+
+    .miniMeta span{
+      font-size: 12.5px;
+      color: rgba(17,24,39,.62);
+    }
+
+    /* Left rotating list */
+    .rotator{
+      position:relative;
+      height: 420px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      transform: translateX(-130px) translateY(64px); /* más a la izquierda */
+    }
+
+
+
+
+    .rotator__frame{
+    width: 292px;
+    height: 380px; /* un poco más alto para que entren más separados */
+    position:relative;
+    }
+
+
+    .rotator__item{
+      position:absolute;
+      left:0; right:0;
+      margin:auto;
+      width: 292px;
+      border-radius: 22px;
+      background:#fff;
+      border: 1px solid rgba(0,0,0,.08);
+      box-shadow: 0 14px 26px rgba(0,0,0,.10);
+      padding: 12px;
+      display:flex;
+      align-items:center;
+      gap: 12px;
+
+      transition:
+        transform .65s cubic-bezier(.2,.8,.2,1),
+        opacity .65s cubic-bezier(.2,.8,.2,1),
+        filter .65s cubic-bezier(.2,.8,.2,1);
+      will-change: transform, opacity, filter;
+    }
+
+    .rotator__item img{
+      width: 40px; height:40px;
+      border-radius: 999px;
+      object-fit:cover;
+      border: 2px solid rgba(255,255,255,.95);
+      box-shadow: 0 10px 16px rgba(0,0,0,.10);
+      flex: 0 0 auto;
+      background:#fff;
+    }
+
+    .rotator__text{
+      display:flex;
+      flex-direction:column;
+      gap: 3px;
+      min-width:0;
+    }
+
+    .rotator__name{
+      font-weight: 850;
+      font-size: 13.5px;
+      letter-spacing:-.01em;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow: ellipsis;
+    }
+
+    .rotator__comment{
+      font-size: 13px;
+      color: rgba(17,24,39,.66);
+      line-height: 1.35;
+      display:-webkit-box;
+      -webkit-line-clamp:2;
+      -webkit-box-orient: vertical;
+      overflow:hidden;
+    }
+
+    /* Positions for 5 items (center is 3rd) */
+    .pos0{ transform: translateY(-210px) scale(.94) rotate(-2deg); opacity:.18; filter: blur(7px) }
+    .pos1{ transform: translateY(-105px) scale(.97) rotate(-1deg); opacity:.52; filter: blur(3.6px) }
+    .pos2{ transform: translateY(0px)    scale(1)   rotate(0deg);  opacity:1;   filter: blur(0px) }
+    .pos3{ transform: translateY(105px)  scale(.97) rotate(1deg);  opacity:.52; filter: blur(3.6px) }
+    .pos4{ transform: translateY(210px)  scale(.94) rotate(2deg);  opacity:.18; filter: blur(7px) }
+
+
+    /* =========================
+       Sections
+    ========================= */
+    .section{ padding: 74px 0 }
+    .section__head{
+      max-width: 780px;
+      margin: 0 auto 26px;
+      text-align:center;
+    }
+    .section__head h2{
+      margin:0 0 8px;
+      font-size: 34px;
+      letter-spacing: -0.03em;
+    }
+    .section__head p{
+      margin:0;
+      color: rgba(17,24,39,.70);
+      line-height:1.65;
+    }
+
+    .grid3{
+      display:grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .card{
+      background: #fff;
+      border: 1px solid rgba(0,0,0,.08);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: 0 14px 26px rgba(0,0,0,.08);
+      cursor: pointer;
+    }
+
+    .card h3{ margin: 10px 0 6px; letter-spacing:-.02em }
+    .card p{ margin:0; color: rgba(17,24,39,.70); line-height:1.65 }
+
+    .icon{
+      width: 46px; height:46px;
+      border-radius: 16px;
+      background: #ffffff00;
+      border: 1px solid rgba(0, 0, 0, 0);
+      display:grid; place-items:center;
+    }
+
+    /* Why split */
+    .section--tint{
+      background: linear-gradient(180deg, rgba(255,255,255,.0), rgba(255,255,255,.70), rgba(255,255,255,.0));
+      border-top: 1px solid rgba(0,0,0,.06);
+      border-bottom: 1px solid rgba(0,0,0,.06);
+    }
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      align-items:center;
+      width:min(980px, 100%);
+      margin: 0 auto;
+    }
+
+    .list{
+      margin: 14px 0 0;
+      padding-left: 18px;
+      color: rgba(17,24,39,.72);
+      line-height:1.7;
+    }
+
+    .split__visual{ position:relative; min-height: 260px }
+    .bubble{
+      position:absolute;
+      background:#fff;
+      border: 1px solid rgba(0,0,0,.08);
+      border-radius: 22px;
+      box-shadow: 0 14px 26px rgba(0,0,0,.10);
+      padding: 14px 14px 12px;
+      width: 220px;
+    }
+    .bubble__title{ font-weight: 900; letter-spacing:-.02em }
+    .bubble__text{ color: rgba(17,24,39,.68); margin-top: 4px }
+    .bubble--a{ left: 10%; top: 6% }
+    .bubble--b{ left: 48%; top: 24% }
+    .bubble--c{ left: 18%; top: 56% }
+
+    /* Testimonials = simple cards with avatar + name + comment (as requested) */
+    .testimonials{
+      width:min(980px, 100%);
+      margin: 0 auto;
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .tcard{
+      background:#fff;
+      border: 1px solid rgba(0,0,0,.08);
+      border-radius: var(--radius);
+      box-shadow: 0 14px 26px rgba(0,0,0,.08);
+      padding: 14px;
+      display:flex;
+      gap: 12px;
+      align-items:flex-start;
+    }
+
+    .tcard img{
+      width: 44px; height:44px;
+      border-radius: 999px;
+      object-fit:cover;
+      border: 2px solid rgba(255,255,255,.95);
+      box-shadow: 0 10px 16px rgba(0,0,0,.10);
+      background:#fff;
+      flex: 0 0 auto;
+    }
+
+    .tmeta{
+      display:flex;
+      flex-direction:column;
+      gap: 4px;
+      min-width:0;
+    }
+
+    .tmeta strong{
+      font-size: 13.5px;
+      letter-spacing:-.01em;
+      font-weight: 900;
+    }
+
+    .tmeta p{
+      margin:0;
+      color: rgba(17,24,39,.70);
+      line-height:1.6;
+      font-size: 14px;
+    }
+
+    /* =========================
+       Pricing
+    ========================= */
+    .section--pricing{
+      padding-top: 86px;
+      background: linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,.0));
+    }
+
+    .segmented{
+      display:flex;
+      justify-content:center;
+      margin: 16px auto 24px;
+    }
+
+    .segmented__pill{
+      display:inline-flex;
+      padding: 6px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,.10);
+      box-shadow: 0 14px 26px rgba(0,0,0,.10);
+      gap: 6px;
+    }
+
+    .segmented__btn{
+      border:0;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: transparent;
+      font-weight: 900;
+      cursor:pointer;
+      color: rgba(17,24,39,.66);
+      transition: background .18s ease, color .18s ease, transform .18s ease;
+    }
+    .segmented__btn:hover{ transform: translateY(-1px) }
+    .segmented__btn.is-active{ background: #F8C160; color:#fff }
+
+    .pricing{
+      width:min(980px, 100%);
+      margin: 0 auto;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .price{
+      position:relative;
+      background:#fff;
+      border: 1px solid rgba(0,0,0,.08);
+      border-radius: var(--radiusLg);
+      padding: 18px;
+      box-shadow: 0 14px 26px rgba(0,0,0,.10);
+    }
+
+    .price h3{ margin: 2px 0 4px; letter-spacing:-.02em }
+    .price ul{ margin: 12px 0 0; padding-left: 18px; color: rgba(17,24,39,.70); line-height:1.7 }
+    .price li{ margin: 8px 0 }
+    .price__value{
+      font-size: 32px;
+      font-weight: 950;
+      letter-spacing:-.03em;
+      margin: 12px 0 8px;
+    }
+    .price__value span{ opacity:.55; font-weight:900; margin-right:2px }
+    .price__value small{ font-size: 14px; font-weight: 850; opacity:.55 }
+
+    .price--featured{
+      border-color: rgba(17,24,39,.18);
+      transform: translateY(-6px);
+    }
+
+    .tag{
+      position:absolute;
+      top: 14px; right: 14px;
+      font-size: 12px;
+      font-weight: 950;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,.05);
+      border: 1px solid rgba(0,0,0,.08);
+      color: rgba(17,24,39,.76);
+    }
+
+    .is-hidden{ display:none }
+    .footnote{
+      width:min(980px, 100%);
+      margin: 18px auto 0;
+      color: rgba(17,24,39,.62);
+      font-size: 13.5px;
+      text-align:center;
+    }
+
+    /* =========================
+       Contact (transparent, no border, no shadow)
+    ========================= */
+    .contact{
+      width:min(980px, 100%);
+      margin: 34px auto 0;
+      text-align:center;
+    }
+
+    .contact h3{
+      margin: 0 0 8px;
+      font-size: 22px;
+      letter-spacing: -0.02em;
+    }
+
+    .contact p{
+      margin: 0 auto;
+      max-width: 680px;
+      color: rgba(17,24,39,.70);
+      line-height:1.65;
+    }
+
+    .contact__actions{
+      display:flex;
+      justify-content:center;
+      gap: 12px;
+      flex-wrap:wrap;
+      margin-top: 14px;
+    }
+
+    .footer{
+      width:min(980px, 100%);
+      margin: 34px auto 60px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(0,0,0,.08);
+      display:flex;
+      justify-content:space-between;
+      gap: 12px;
+      flex-wrap:wrap;
+      color: rgba(17,24,39,.62);
+      font-size: 13.5px;
+    }
+
+    /* =========================
+       Scroll animations (repeatable)
+       - IMPORTANT: do NOT unobserve.
+       - Add class when intersecting, remove when leaving.
+    ========================= */
+    [data-animate]{
+      opacity: 0;
+      transform: translateY(14px) scale(.99);
+      transition: opacity .7s cubic-bezier(.2,.8,.2,1), transform .7s cubic-bezier(.2,.8,.2,1);
+      will-change: transform, opacity;
+    }
+    [data-animate].in{
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    @media (prefers-reduced-motion: reduce){
+      [data-animate]{ opacity:1; transform:none; transition:none }
+      .btn, .nav__link, .segmented__btn{ transition:none }
+      .rotator__item{ transition:none }
+    }
+
+    /* =========================
+       Responsive
+    ========================= */
+    @media (max-width: 980px){
+      .topbar__inner{
+        grid-template-columns: 1fr;
+        justify-items:center;
+        gap: 10px;
+      }
+      .brand{ min-width:auto; }
+      .topbar__spacer{ display:none; }
+
+      .heroVisual__grid{
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+      .rotator{ height: 340px }
+      .rotator__frame{ height: 300px }
+      .tiltStack{ height: 320px }
+      .heroImageWrap{ min-height: 320px }
+      .split{ grid-template-columns: 1fr }
+      .grid3{ grid-template-columns: 1fr }
+      .testimonials{ grid-template-columns: 1fr }
+      .pricing{ grid-template-columns: 1fr }
+      .price--featured{ transform:none }
+    }
+.subtitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* SVG del mismo tamaño que el texto */
+.subtitle__svg {
+  width: 1.1em;
+  height: 1.1em;
+  flex-shrink: 0;
+
+  position: relative;
+  top: 0.15em; /* apenas más bajo para dar sensación de vuelo */
+
+  animation: floatNatural 9s ease-in-out infinite;
+}
+
+/* Movimiento flotante natural completo */
+@keyframes floatNatural {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  20% {
+    transform: translate(3px, -5px) rotate(0.4deg); /* arriba derecha */
+  }
+
+  40% {
+    transform: translate(0, -7px) rotate(0deg); /* arriba centro */
+  }
+
+  60% {
+    transform: translate(-3px, -5px) rotate(-0.4deg); /* arriba izquierda */
+  }
+
+  80% {
+    transform: translate(1px, -3px) rotate(0.2deg);
+  }
+
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+main{ padding-top: 82px; }
+
+
+
+
+/* ===== Botonera overlay delante de la foto ===== */
+
+/* Aseguramos que el contenedor donde cae el overlay tenga referencia */
+.hero{
+  position:relative;
+}
+
+/* ===== FX de icono subiendo detrás del botón ===== */
+/* ===== FX: SVG detrás del botón que SUBE desde abajo ===== */
+.btnFx{
+  position: relative;
+  overflow: hidden;      /* recorta el SVG dentro del botón */
+  isolation: isolate;    /* crea un stacking context */
+}
+
+.btnFx__label{
+  position: relative;
+  z-index: 2;            /* texto ARRIBA */
+}
+
+/* capa del SVG (ATRÁS) */
+.btnFx__bg{
+  position: absolute;
+  inset: 0;
+  z-index: 0;            /* SVG ATRÁS del contenido */
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+
+  transform: translateY(130%); /* arranca escondido abajo */
+  opacity: 0;
+  transition:
+    transform .38s cubic-bezier(.2,.8,.2,1),
+    opacity .22s ease;
+}
+
+/* el SVG hereda color */
+.btnFx__svg{
+  width: 48px;
+  height: 48px;
+  opacity: 1;
+  color: currentColor;
+}
+
+/* Hover: sube desde abajo, pero siempre detrás del texto */
+.btnFx:hover .btnFx__bg{
+  transform: translateY(0%);
+  opacity: .22; /* sube visible detrás */
+}
+
+/* para que en primary quede más sutil */
+.btn--primary.btnFx:hover .btnFx__bg{ opacity: .18; }
+.btn--ghost.btnFx:hover   .btnFx__bg{ opacity: .20; }
+
+
+.btn--ghost .btnFx__bg{ opacity:0; }
+.btn--ghost:hover .btnFx__bg{ opacity:.20; }
+
+/* Si querés que el icono quede un poquito más arriba del centro */
+.btnFx:hover .btnFx__bg{
+  transform: translateY(-8%);
+}
+
+
+
+
+  </style>
+</head>
+
+<body>
+  <a class="skip" href="#pricing">Saltar al contenido</a>
+
+  <!-- =========================
+       TOPBAR
+       - Brand left
+       - Nav pill centered
+       - Transparent topbar container
+  ========================= -->
+  <header class="topbar" role="banner">
+    <div class="wrap topbar__inner">
+      <a class="brand" href="#top" aria-label="Ir al inicio">
+        <!-- LOGO URL (reemplazá si querés tu logo real) -->
+        <img
+          class="brand__logo"
+          src="https://static.vecteezy.com/system/resources/thumbnails/055/105/094/small/circle-usa-flag-united-states-of-america-free-png.png"
+          alt="English Meetups"
+        />
+        <span class="brand__name">English Meetups</span>
+      </a>
+
+      <nav class="nav" aria-label="Navegación principal">
+        <div class="nav__pill">
+          <a class="nav__link" href="#top">Inicio</a>
+          <a class="nav__link" href="#how">Cómo funciona</a>
+          <a class="nav__link" href="#why">Por qué</a>
+          <a class="nav__link" href="#testimonials">Opiniones</a>
+          <a class="nav__link nav__cta" href="#pricing">Tarifas</a>
+        </div>
+      </nav>
+
+      <div class="topbar__spacer" aria-hidden="true"></div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- =========================
+         HERO (centered layout)
+    ========================= -->
+    <section class="hero">
+      <div class="wrap hero__center">
+        <!-- Joined centered -->
+        <div class="joined" data-animate>
+          <div class="avatars" aria-label="Personas que ya se unieron">
+            <!-- Avatar URLs (internet) -->
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&h=120&q=70" alt="Persona 1" />
+            <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=120&h=120&q=70" alt="Persona 2" />
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&h=120&q=70" alt="Persona 3" />
+            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=120&h=120&q=70" alt="Persona 4" />
+            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=120&h=120&q=70" alt="Persona 5" />
+          </div>
+          <div class="joined__text">
+            <strong>+170</strong> personas ya se sumaron · <span class="muted">grupos avanzados</span>
+          </div>
+        </div>
+
+        <!-- Title centered -->
+            <h1 class="hero__title" data-animate data-delay="80">
+            Conversación en inglés,
+
+            <span class="subtitle">
+                <svg
+                class="subtitle__svg"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+                aria-hidden="true"
+                >
+                <svg version="1.1" id="_x34_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path style="fill:#B89963;" d="M131.573,449.827v21.63c0,22.382,18.982,40.527,42.397,40.527h15.022 c10.877,0,20.765-3.949,28.27-10.385h0.007v-0.006c8.648-7.419,14.12-18.153,14.12-30.135v-21.63H131.573z"></path> <g> <g> <g> <polygon style="fill:#FDFADE;" points="141.76,431.034 127.827,435.193 125.192,427.221 107.1,371.834 106.476,370.032 120.409,365.873 122.351,371.834 140.512,427.221 "></polygon> </g> <g> <polygon style="fill:#FDFADE;" points="235.12,435.207 221.227,431.05 242.579,365.845 256.472,370.001 "></polygon> </g> </g> <g> <rect x="174.202" y="364.014" style="fill:#FDFADE;" width="14.558" height="81.175"></rect> </g> </g> <g> <path style="fill:#FDFEFF;" d="M362.961,173.924c0,100.307-92.542,150.565-101.901,190.077H101.901 c-6.586-27.728-54.07-60.725-81.798-112.645C8.249,229.311,0,203.87,0,173.924C0,125.885,20.38,82.421,53.307,50.95 c16.36-15.667,35.838-28.282,57.397-37.086C132.194,5.13,155.763,0.208,180.51,0c0,0,0,0,0.069,0h1.387 c2.773,0,5.546,0.069,8.318,0.278C213.645,1.386,235.828,6.724,256,15.458c6.447,2.773,12.686,5.892,18.647,9.358 c12.755,7.347,24.539,16.082,35.007,26.134c12.478,11.854,23.084,25.441,31.472,40.344 C355.059,115.903,362.961,143.979,362.961,173.924z"></path> <path style="fill:#7AC8D2;" d="M180.999,7.194V364.21c0,3.441-2.867,6.23-6.404,6.23h-40.236c-3.175,0-5.863-2.267-6.323-5.323 c-4.233-28.17-58.409-92.549-73.822-173.599C39.62,114.785,47.881,8.365,171.983,1.298c0.541-0.031,1.072-0.174,1.611-0.258 C177.48,0.431,180.999,3.365,180.999,7.194z"></path> <path style="fill:#7AC8D2;" d="M181.962,7.194V364.21c0,3.441,2.867,6.23,6.404,6.23h40.236c3.175,0,5.863-2.267,6.323-5.323 c4.233-28.17,58.409-92.549,73.822-173.599c14.594-76.732,6.333-183.152-117.769-190.219c-0.541-0.031-1.071-0.174-1.611-0.258 C185.481,0.431,181.962,3.365,181.962,7.194z"></path> <path style="fill:#FDFEFF;" d="M190.015,1.292c-2.556-0.754-5.241-1.178-8.053-1.258V0.017c-0.148,0-0.298,0-0.446,0.002 c-0.012,0-0.023,0.001-0.035,0.001c-0.012,0-0.023-0.001-0.035-0.001c-0.148-0.002-0.299-0.002-0.446-0.002v0.018 c-2.812,0.08-5.497,0.504-8.053,1.258c-40.039,11.782-55.693,102.4-47.764,172.175c8.492,74.737,32.19,151.047,34.761,190.546 h21.056h0.963h21.056c2.572-39.5,26.27-115.81,34.761-190.546C245.708,103.692,230.054,13.074,190.015,1.292z"></path> <polygon style="fill:#77C7C6;" points="260.991,364.001 260.021,371.834 102.872,371.834 101.901,364.001 "></polygon> </g> <path style="fill:#CFAB73;" d="M255.029,427.221v16.914c0,3.674-0.416,7.21-1.386,10.606c0.069,0.069,0.069,0.069,0,0.139 c-3.258,12.963-12.409,23.708-24.54,29.599c-0.347,0.208-0.762,0.416-1.109,0.486c-6.17,2.842-13.032,4.437-20.311,4.437h-52.406 c-5.13,0-10.121-0.762-14.696-2.218c-2.357-0.763-4.575-1.594-6.724-2.704c-11.715-5.615-20.588-15.804-24.123-28.144 c-0.208-0.485-0.347-1.04-0.416-1.594c-0.971-3.397-1.386-6.932-1.386-10.606v-16.914H255.029z"></path> <g> <g> <path style="fill:#F7F5C1;" d="M214.503,442.28c0,7.015-3.664,12.701-8.183,12.701c-4.52,0-8.183-5.686-8.183-12.701 c0-7.015,5.799-19.605,8.183-19.605C209.315,422.675,214.503,435.266,214.503,442.28z"></path> <path style="fill:#F7F5C1;" d="M164.826,442.28c0,7.015-3.664,12.701-8.184,12.701c-4.52,0-8.183-5.686-8.183-12.701 c0-7.015,5.799-19.605,8.183-19.605C159.638,422.675,164.826,435.266,164.826,442.28z"></path> </g> <g> <path style="fill:#F7F5C1;" d="M263.23,442.28c0,7.015-3.664,12.701-8.183,12.701s-8.183-5.686-8.183-12.701 c0-7.015,5.799-19.605,8.183-19.605C258.043,422.675,263.23,435.266,263.23,442.28z"></path> <path style="fill:#F7F5C1;" d="M116.112,442.264c0,6.238-2.981,11.507-6.793,12.477c-0.347,0.139-0.693,0.208-1.04,0.139 c-0.139,0.069-0.208,0.069-0.347,0.069c-3.466,0-6.377-3.328-7.626-8.041c-0.346-1.456-0.554-2.98-0.554-4.644 c0-7.001,5.753-19.618,8.18-19.618c1.178,0,2.634,1.872,4.021,4.575C114.17,431.519,116.112,437.966,116.112,442.264z"></path> </g> </g> </g> <path style="opacity:0.1;fill:#040000;" d="M254.683,422.785c-0.069,0-0.139,0-0.139,0c-0.208-0.139-0.347-0.139-0.485-0.139 c-0.901,0-2.288,1.941-3.743,4.575h-13.518l18.093-55.388h4.228l0.901-7.832h0.069c9.358-39.512,101.901-89.77,101.901-190.077 c0-30.917-8.388-59.893-23.222-84.987c-8.11-14.002-18.301-26.757-30.085-37.987c-9.844-9.427-20.796-17.746-32.65-24.747 c-6.516-3.882-13.309-7.418-20.38-10.398c-20.103-8.873-42.147-14.28-65.369-15.528c-2.634-0.139-5.268-0.208-7.903-0.208 C182.243,0,182.105,0,181.966,0h-1.387c-0.069,0-0.069,0-0.069,0v512h7.487c10.883,0,20.796-3.951,28.283-10.398 c5.268-4.506,9.289-10.191,11.715-16.637c0.069-0.139,0.138-0.347,0.208-0.486c0.346-0.207,0.763-0.346,1.109-0.623 c11.576-6.032,20.172-16.499,23.43-29.115c0.277,0.069,0.624,0.139,0.901,0.139c0.138,0.069,0.277,0.069,0.416,0.069 c0.138,0,0.347,0,0.485-0.069c4.367-0.347,7.695-5.892,7.695-12.616C262.239,435.678,257.733,424.171,254.683,422.785z M187.789,371.834h51.851l-18.162,55.388h-12.131c-1.178-2.218-2.426-4.02-3.466-4.437c-0.208-0.069-0.416-0.139-0.555-0.139 c-0.901,0-2.288,1.941-3.743,4.575h-13.795V371.834z"></path> </g> </g></svg>
+                </svg>
+                <span class="title__accent">entre amigos</span>
+            </span>
+            </h1>
+
+
+
+        <!-- Subtitle centered -->
+        <p class="hero__subtitle" data-animate data-delay="140">
+          No son clases. Son <strong>experiencias de conversación</strong> para adultos con nivel intermedio-avanzado,
+          en grupos reducidos. Temas actuales, juegos, debate - y el inglés, se vuelve natural.
+        </p>
+
+        <!-- Badges centered -->
+        <div class="hero__badges" data-animate data-delay="260">
+          <span class="badge">Grupal</span>
+          <span class="badge">Presencial u online</span>
+          <span class="badge">Nivel avanzado</span>
+        </div>
+
+        <!-- Actions centered -->
+<div class="hero__actions hero__actions--overlay" data-animate data-delay="200">
+  <a class="btn btn--primary btnFx" href="#pricing">
+    <span class="btnFx__bg" aria-hidden="true">
+      <!-- SVG: 2 libros (detrás) -->
+<svg height="50px" width="50px" version="1.1" id="_x34_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <polygon style="fill:#7D7D7E;" points="301.525,189.241 301.525,224.783 300.594,224.783 289.559,225.499 0,225.499 0,75.812 3.081,73.016 15.549,61.623 18.702,58.685 40.199,38.908 45.429,34.108 45.573,33.965 70.939,49.371 247.497,156.495 268.708,169.322 278.524,175.269 294.575,185.015 "></polygon> <polygon style="fill:#F7F7F7;" points="256.025,178.135 246.279,184.943 230.515,195.906 187.952,225.499 33.391,333.054 33.319,333.126 19.275,342.871 11.895,348.03 10.032,349.32 7.094,351.326 5.159,352.687 0,356.27 0,0 1.003,0.716 19.992,13.972 70.939,49.371 237.179,165.023 246.279,171.399 "></polygon> <polygon style="fill:#E9E8E8;" points="512,0.023 512,356.295 511.015,355.605 498.56,346.942 256.008,178.135 265.706,171.39 275.207,164.794 "></polygon> <polygon style="fill:#7D7D7E;" points="506.781,356.295 5.235,356.295 5.579,356 18.428,345.416 31.622,334.536 32.458,333.846 33.394,333.059 58.058,312.727 58.156,312.628 237.153,164.991 256.008,149.434 274.912,164.991 454.303,313.023 454.549,313.22 478.524,333.01 479.853,334.093 "></polygon> <polygon style="fill:#F4F4F5;" points="512,356.295 0.017,356.295 5.579,352.11 16.459,343.939 30.292,333.551 32.458,331.927 58.058,312.727 58.156,312.628 246.31,171.39 256.008,164.104 264.229,170.307 265.706,171.39 454.303,313.023 454.549,313.22 479.853,332.221 506.781,352.406 511.015,355.605 511.064,355.605 "></polygon> <g> <polygon style="fill:#DC536A;" points="13.391,39.267 13.391,63.916 8.858,61.623 0,57.109 0,32.388 1.339,33.033 "></polygon> <polygon style="fill:#37ADD6;" points="13.391,84.482 13.391,109.131 0,102.252 0,77.603 "></polygon> <polygon style="fill:#DC536A;" points="13.391,129.696 13.391,154.346 0,147.467 0,122.817 "></polygon> <polygon style="fill:#37ADD6;" points="13.391,174.91 13.391,199.56 0,192.681 0,167.96 "></polygon> <polygon style="fill:#DC536A;" points="13.391,220.125 13.391,244.774 0,237.895 0,213.246 "></polygon> <polygon style="fill:#37ADD6;" points="13.391,265.34 13.391,289.989 0,283.11 0,258.461 "></polygon> <polygon style="fill:#DC536A;" points="13.391,310.554 13.391,335.204 0,328.254 0,303.675 "></polygon> <polygon style="fill:#37ADD6;" points="13.398,355.754 13.398,356.295 0.024,356.295 0.024,348.862 0.944,349.353 7.454,352.702 "></polygon> </g> <g> <polygon style="fill:#DC536A;" points="498.262,39.26 498.262,63.923 502.914,61.61 512,57.08 512,32.367 "></polygon> <polygon style="fill:#37ADD6;" points="498.262,84.501 498.262,109.116 512,102.224 512,77.61 "></polygon> <polygon style="fill:#DC536A;" points="498.262,129.693 498.262,154.357 512,147.466 512,122.802 "></polygon> <polygon style="fill:#37ADD6;" points="498.262,174.885 498.262,199.549 512,192.658 512,167.994 "></polygon> <polygon style="fill:#DC536A;" points="498.262,220.127 498.262,244.792 512,237.899 512,213.235 "></polygon> <polygon style="fill:#37ADD6;" points="498.262,265.32 498.262,289.984 512,283.091 512,258.428 "></polygon> <polygon style="fill:#DC536A;" points="498.262,310.561 498.262,335.176 512,328.284 512,303.67 "></polygon> <polygon style="fill:#37ADD6;" points="498.262,355.754 498.262,356.295 512,356.295 512,348.862 511.055,349.353 504.368,352.702 "></polygon> </g> <g> <polygon style="fill:#DC536A;" points="507.64,342.856 493.036,356.295 456.774,356.295 471.378,342.856 "></polygon> <polygon style="fill:#37ADD6;" points="441.123,342.856 426.519,356.295 390.202,356.295 404.805,342.856 "></polygon> <polygon style="fill:#DC536A;" points="374.55,342.856 359.947,356.295 323.684,356.295 338.289,342.856 "></polygon> <polygon style="fill:#37ADD6;" points="308.033,342.856 293.429,356.295 257.167,356.295 271.772,342.856 "></polygon> <polygon style="fill:#DC536A;" points="241.516,342.856 226.912,356.295 190.65,356.295 205.254,342.856 "></polygon> <polygon style="fill:#37ADD6;" points="174.999,342.856 160.395,356.295 124.133,356.295 138.737,342.856 "></polygon> <polygon style="fill:#DC536A;" points="108.482,342.856 93.878,356.295 57.561,356.295 72.165,342.856 "></polygon> <polygon style="fill:#37ADD6;" points="41.91,342.856 30.116,353.735 27.25,356.295 11.93,356.295 11.93,342.856 "></polygon> </g> <polygon style="fill:#7D7D7E;" points="511.977,0 511.977,5.733 510.257,7.094 296.868,183.152 294.575,185.015 289.487,189.241 281.462,195.835 255.953,216.901 230.515,195.906 222.49,189.241 215.109,183.223 40.199,38.908 15.477,18.488 0,5.733 0,0 "></polygon> <polygon style="fill:#F4F4F5;" points="511.977,0 506.962,3.798 283.182,171.829 278.524,175.269 274.726,178.135 265.77,184.871 255.953,192.252 247.784,186.017 246.279,184.943 237.251,178.135 228.867,171.901 45.429,34.108 19.418,14.546 1.003,0.716 0.932,0.716 0,0 "></polygon> </g> </g></svg>
+    </span>
+    <span class="btnFx__label">Unirme</span>
+  </a>
+
+  <a class="btn btn--ghost btnFx" href="#how">
+    <span class="btnFx__bg" aria-hidden="true">
+      <!-- SVG: libro + lupa (lupa delante) -->
+      <svg height="50px" width="50px" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="#000000" transform="matrix(-1, 0, 0, 1, 0, 0)rotate(-45)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <defs> <style>.cls-1{fill:#d0d7df;}.cls-2{fill:#a4b0c0;}.cls-3{fill:#4c5665;}.cls-4{fill:#49aaee;}.cls-5{fill:#3398d6;}</style> </defs> <title></title> <g id="Search"> <rect class="cls-1" height="4" transform="translate(47 60) rotate(180)" width="1" x="23" y="28"></rect> <rect class="cls-2" height="4" transform="translate(50 60) rotate(180)" width="2" x="24" y="28"></rect> <path class="cls-3" d="M24.5,32h0A2.5,2.5,0,0,1,27,34.5V47a1,1,0,0,1-1,1H23a1,1,0,0,1-1-1V34.5A2.5,2.5,0,0,1,24.5,32Z" transform="translate(49 80) rotate(180)"></path> <circle class="cls-1" cx="25" cy="15" r="15"></circle> <circle class="cls-4" cx="25" cy="15" r="13"></circle> <path class="cls-5" d="M15.5,16.5a1,1,0,0,1-1-1A10.512,10.512,0,0,1,25,5a1,1,0,0,1,0,2,8.51,8.51,0,0,0-8.5,8.5A1,1,0,0,1,15.5,16.5Z"></path> </g> </g></svg>
+    </span>
+    <span class="btnFx__label">Ver cómo funciona</span>
+  </a>
+</div>
+
+
+
+
+        <!-- =========================
+             HERO VISUAL (as requested)
+        ========================= -->
+        <div class="heroVisual" aria-label="Vista principal">
+          <div class="heroVisual__grid">
+            <!-- Left: rotating list -->
+            <div class="rotator" aria-label="Comentarios en rotación">
+              <div class="rotator__frame" id="rotatorFrame">
+                <!-- Items inserted by JS (kept in DOM for animation) -->
+                <div class="rotator__item" data-rotator-item>
+                  <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=70" alt="Camila" />
+                  <div class="rotator__text">
+                    <div class="rotator__name">Camila</div>
+                    <div class="rotator__comment">“Me hizo volver a hablar sin pensar tanto. Súper natural.”</div>
+                  </div>
+                </div>
+
+                <div class="rotator__item" data-rotator-item>
+                  <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=120&h=120&q=70" alt="Martín" />
+                  <div class="rotator__text">
+                    <div class="rotator__name">Martín</div>
+                    <div class="rotator__comment">“Grupos avanzados de verdad. Conversaciones inteligentes.”</div>
+                  </div>
+                </div>
+
+                <div class="rotator__item" data-rotator-item>
+                  <img src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?auto=format&fit=crop&w=120&h=120&q=70" alt="Lucía" />
+                  <div class="rotator__text">
+                    <div class="rotator__name">Lucía</div>
+                    <div class="rotator__comment">“Cero vergüenza. Hablo más y mejor en cada encuentro.”</div>
+                  </div>
+                </div>
+
+                <div class="rotator__item" data-rotator-item>
+                  <img src="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?auto=format&fit=crop&w=120&h=120&q=70" alt="Nico" />
+                  <div class="rotator__text">
+                    <div class="rotator__name">Nico</div>
+                    <div class="rotator__comment">“Me sirvió para reuniones y entrevistas. Soltura real.”</div>
+                  </div>
+                </div>
+
+                <div class="rotator__item" data-rotator-item>
+                  <img src="https://images.unsplash.com/photo-1548142813-c348350df52b?auto=format&fit=crop&w=120&h=120&q=70" alt="Sofía" />
+                  <div class="rotator__text">
+                    <div class="rotator__name">Sofía</div>
+                    <div class="rotator__comment">“El feedback es perfecto: puntual, sin cortar la charla.”</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Center: big transparent “photo” URL (SVG, transparent background) -->
+                    <div class="heroImageWrap" aria-hidden="true">
+                    <img
+                      class="heroImage"
+                      src="https://www.svgrepo.com/download/530425/chat-round.svg"
+                      alt=""
+                      data-parallax="0.7"
+                      data-base-transform=""
+                      data-animate
+                    />
+
+                    <!-- FOTO DELANTERA (esta era la que faltaba) -->
+                    <img
+                      class="centerFrontImage"
+                      src="https://png.pngtree.com/png-clipart/20240117/original/pngtree-programmer-3d-character-cartoon-three-dimensional-cute-profession-png-image_14126482.png"
+                      alt=""
+                      data-parallax="0.9"
+                      data-base-transform="translate(-50%, -50%)"
+                      data-animate
+                    />
+                  </div>
+
+
+
+
+
+
+              <!-- NUEVO: 2 comentarios cuadrados estilo "review" -->
+                <div class="rightComments" aria-label="Comentarios destacados">
+      <div class="commentSquare commentSquare--a" data-parallax="1.1">
+        <div class="csTop">
+          <p>“Fluidez + vocabulario vivo + confianza. Cero presión y mucho speaking.”</p>
+        </div>
+
+        <div class="csDivider"></div>
+
+        <div class="csBottom">
+          <div class="miniRow">
+            <img src="https://images.unsplash.com/photo-1548142813-c348350df52b?auto=format&fit=crop&w=120&h=120&q=70" alt="Flor" />
+            <div class="miniMeta">
+              <strong>Flor</strong>
+              <span>“Mi inglés revivió.”</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="commentSquare commentSquare--b" data-parallax="1.0">
+        <div class="csTop">
+          <p>“Grupos avanzados reales. Conversación inteligente que te hace mejorar.”</p>
+        </div>
+
+        <div class="csDivider"></div>
+
+        <div class="csBottom">
+          <div class="miniRow">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&h=120&q=70" alt="Diego" />
+            <div class="miniMeta">
+              <strong>Diego</strong>
+              <span>“Volví a fluir.”</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+            </div>
+          </div>
+        </div><!-- /heroVisual -->
+
+        <!-- FOTO CENTRAL DELANTERA (arriba de todo) -->
+<div class="centerOverlay">
+  <img
+    class="centerFrontImage"
+    src="https://static.vecteezy.com/system/resources/thumbnails/055/000/402/small_2x/3d-icon-of-friends-taking-a-selfie-with-smiles-png.png"
+    alt=""
+    data-parallax="0.9"
+    data-base-transform="translate(-50%, -50%)"
+  />
+</div>
+
+
+      </div>
+    </section>
+
+    <!-- =========================
+         HOW
+    ========================= -->
+    <section id="how" class="section">
+      <div class="wrap">
+        <div class="section__head" data-animate>
+          <h2>Cómo funciona</h2>
+          <p>Simple, claro, y diseñado para mantener tu nivel alto sin sentir que “volvés al aula”.</p>
+        </div>
+
+        <div class="grid3">
+          <article class="card" data-animate data-delay="60">
+            <div class="icon" aria-hidden="true">
+            <svg height="30px" width="30px" version="1.1" id="_x34_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path style="fill:#595758;" d="M57.666,180.554c0,24.604-12.782,166.02-12.782,181.83c0,24.61-10.41,54.688-17.847,43.746 c-7.431-10.936-29.743-51.951-26.765-106.632c2.973-54.682,39.404-105.004,46.984-118.944 C56.18,164.143,57.666,165.264,57.666,180.554z"></path> <polygon style="fill:#3E3A39;" points="140.611,456.018 140.611,487.656 98.228,512 96.866,496.178 77.718,496.178 85.929,480.361 70.888,475.488 111.902,460.885 111.902,442.629 140.611,442.629 "></polygon> <path style="fill:#595758;" d="M267.995,180.554c0,24.604,12.794,166.02,12.794,181.83c0,24.61,10.397,54.688,17.835,43.746 c7.437-10.936,29.743-51.951,26.765-106.632c-2.973-54.682-39.404-105.004-46.984-118.944 C269.482,164.143,267.995,165.264,267.995,180.554z"></path> <polygon style="fill:#3E3A39;" points="185.05,456.018 185.05,487.656 227.433,512 228.801,496.178 247.943,496.178 239.738,480.361 254.78,475.488 213.765,460.885 213.765,442.629 185.05,442.629 "></polygon> <g> <path style="fill:#FAFAFB;" d="M258.638,203.796c-23.241-73.823-13.667-80.666-92.965-71.093 c-79.291-9.574-69.723-2.73-92.964,71.093C57.92,250.761,32.227,331.613,55.455,394.537c3.406,4.124,7.184,7.951,11.357,11.469 c8.701,7.319,31.416,31.57,34.147,37.038c6.96,13.915,51.956,19.136,51.956,1.368c0-11.023,2.997-7.177,9.915-7.177 c6.917,0,9.915-3.846,9.915,7.177c0,17.767,44.996,12.546,51.956-1.368c2.738-5.468,25.446-29.719,34.147-37.038 c7.227-6.094,13.265-13.092,18.244-21.018C288.468,328.913,272.485,247.782,258.638,203.796z"></path> <path style="fill:#595758;" d="M270.726,162.781c-19.141-32.809-23.606-39.466-34.79-96.526C227.761,24.573,203.25,0,162.831,0 c-40.42,0-60.652,25.644-73.105,66.256c-17.018,55.511-21.123,67.81-34.79,96.526c-18.324,38.475-27.347,82.028-25.917,140.642 c0.96,39.392,8.577,69.476,26.437,91.113c-23.229-62.924,2.465-143.776,17.253-190.741 c23.241-73.823,13.673-80.666,92.964-71.093c79.298-9.574,69.724-2.73,92.965,71.093c13.847,43.987,29.83,125.117,18.455,181.192 c12.967-20.659,18.733-47.665,19.55-81.564C298.073,244.809,292.196,199.584,270.726,162.781z"></path> </g> <path style="fill:#231815;" d="M236.43,57.133c0,0,21.879,6.688,43.746,28.561c4.867,4.861-10.323,5.468-47.517,5.994 c-17.766,0.254-36.946-3.567-20.535-19.971C217.587,55.313,227.315,43.763,236.43,57.133z"></path> <path style="fill:#EADF27;" d="M221.723,128.603c-14.38-4.384-41.014-16.411-56.05-16.411c-15.042,0-42.066,10.887-56.056,16.411 c-15.99,6.311-9.568,12.305,4.106,17.773c13.673,5.468,51.95,6.83,51.95,6.83s38.284-1.362,51.951-6.83 C231.297,140.909,239.465,134.004,221.723,128.603z"></path> <path style="fill:#F4E228;" d="M98.495,71.575c0,0,3.641-12.856,9.716-16.404c6.081-3.542-3.034,11.97,34.029,45.219 C146.5,103.047,112.465,93.293,98.495,71.575z"></path> </g> <path style="opacity:0.11;fill:#231815;" d="M325.389,299.498c-2.632-48.408-31.447-93.343-43.293-112.701 c-3.183-8.391-6.924-16.392-11.37-24.015c-15.847-27.161-21.643-36.481-29.508-71.223c30.914-0.52,43.43-1.399,38.959-5.864 c-21.867-21.872-43.746-28.561-43.746-28.561c-1.288-1.889-2.589-3.226-3.883-4.18C222.045,19.414,198.729,0,162.831,0 c-0.278,0-0.539,0.03-0.817,0.03v437.155c0.278,0.013,0.526,0.05,0.817,0.05c6.917,0,9.915-3.846,9.915,7.177 c0,6.019,5.208,9.344,12.305,10.645v0.96v31.638L227.433,512l1.368-15.822h19.142l-8.206-15.817l15.042-4.873l-41.014-14.603 v-9.314c5.14-2.167,9.209-5.078,10.936-8.527c2.738-5.468,25.446-29.719,34.147-37.038c7.227-6.094,13.265-13.092,18.244-21.018 c1.696-2.707,3.257-5.53,4.712-8.453c2.793,20.318,10.782,38.482,16.82,29.595C306.062,395.193,328.368,354.179,325.389,299.498z"></path> </g> </g></svg>
+
+            </div>
+            <h3>Conversación guiada</h3>
+            <p>Disparadores + moderación liviana. Vos hablás, preguntás, debatís. Sin teoría pesada.</p>
+          </article>
+
+          <article class="card" data-animate data-delay="120">
+            <div class="icon" aria-hidden="true">
+              <svg height="30px" width="30px" version="1.1" id="_x34_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path style="fill:#5E4F4F;" d="M471.675,444.169v6.384c0,13.752-0.082,42.973-0.082,42.973h-41.336l-27.094-20.708l-147.909-0.082 H108.736l-27.012,20.627H40.306c0,0,0-4.175,0-10.069v-39.289l203.652,0.082h11.296l197.513,0.082H471.675z"></path> <path style="fill:#AD3735;" d="M508.345,409.953l-56.152-97.241l-4.584-8.023L294.052,38.421l-3.52-6.057l-10.887-18.909 c-4.83-8.267-12.933-12.77-21.364-13.342c-9.822-0.9-19.972,3.602-25.538,13.342l-9.577,16.617l-4.666,7.94l-43.874,75.96 l-4.502,7.858l-22.101,38.143L18.042,385.07H17.96l-4.584,7.94l-9.659,16.78c-4.011,6.958-4.584,14.57-2.537,21.283 c0.246,0.818,0.491,1.637,0.9,2.455c0.573,1.556,1.392,3.029,2.292,4.502c2.537,3.929,6.057,7.121,10.232,9.331 c1.309,0.654,2.701,1.309,4.175,1.719c2.619,0.818,5.402,1.31,8.349,1.31h13.178l416.144,0.163h28.403 C505.726,450.553,518.741,428.043,508.345,409.953z M248.133,185.92c4.42-7.613,11.541-7.613,15.961,0l91.185,166.163 c4.339,7.613,0.818,13.834-7.94,13.834l-182.616-0.082c-8.758-0.082-12.36-6.221-7.94-13.834L248.133,185.92z"></path> <path style="fill:#DE413F;" d="M484.864,450.58l-19.201-0.009L260.956,95.615l33.062-57.205l153.579,266.301l4.597,7.962 l56.124,97.319C518.723,428.035,505.689,450.589,484.864,450.58z"></path> <path style="fill:#DE413F;" d="M452.767,444.169l-30.122-52.305c1.801-0.982,2.947-2.456,3.438-4.257 c0.573-1.883,0.409-4.093-0.737-6.467c-0.245-0.573-0.491-1.063-0.818-1.637l-38.553-66.792l-4.584-7.941L264.094,101.366 c-0.327-0.492-0.654-0.982-0.9-1.473c-0.9-1.311-1.883-2.292-2.947-3.03c-0.367-0.23-0.756-0.274-1.133-0.444 c-0.305-0.15-0.609-0.342-0.914-0.457c-0.135-0.042-0.277-0.029-0.413-0.063c-0.377-0.094-0.741-0.144-1.119-0.172 c-0.834-0.059-1.67-0.018-2.479,0.235c-0.655,0.164-1.228,0.41-1.801,0.736c0,0-0.082,0-0.082,0.082 c-0.409,0.246-0.818,0.573-1.228,0.901c-0.409,0.327-0.737,0.654-1.146,1.063l1.801-3.109l4.584-8.021l32.823-56.644l0.246-0.491 l-9.741-17.025c-4.83-8.267-12.933-12.77-21.364-13.342c-9.822-0.9-19.972,3.602-25.538,13.342l-9.577,16.617l-4.666,7.94 l-43.874,75.96l-4.502,7.858l-22.101,38.143L17.96,385.07h0.082l67.611,0.082c-0.082,1.802,0.409,3.438,1.473,4.748 c1.637,1.964,4.42,3.192,8.349,3.192h-1.228l-80.871-0.082h-0.082l-9.659,16.78c-4.011,6.958-4.502,14.57-2.456,21.283 c0.246,0.818,0.491,1.637,0.9,2.455c0.573,1.556,1.392,3.029,2.292,4.502c2.537,3.929,6.057,7.121,10.232,9.331 c1.309,0.654,2.701,1.309,4.175,1.719c2.619,0.818,5.402,1.31,8.349,1.31h13.178l416.144,0.163L452.767,444.169z M347.339,365.917 l-182.616-0.082c-8.758-0.082-12.36-6.221-7.94-13.834l91.349-166.081c4.42-7.613,11.541-7.613,15.961,0l91.185,166.163 C359.617,359.696,356.097,365.917,347.339,365.917z"></path> <polygon style="fill:#AD3735;" points="248.714,49.113 241.27,36.206 248.726,23.306 263.626,23.312 271.07,36.22 263.614,49.12 "></polygon> <polygon style="fill:#AD3735;" points="26.44,435.094 18.996,422.187 26.452,409.287 41.351,409.294 48.795,422.201 41.34,435.101 "></polygon> <polygon style="fill:#AD3735;" points="474.615,435.3 467.171,422.393 474.626,409.492 489.526,409.499 496.97,422.406 489.514,435.307 "></polygon> <path style="fill:#F8D67B;" d="M425.346,381.141c-0.245-0.573-0.491-1.063-0.818-1.637l-38.553-66.792l-4.584-7.941 L264.094,101.366c-0.327-0.492-0.654-0.982-0.9-1.473c-0.327-0.41-0.655-0.819-0.982-1.065c-0.327-0.409-0.655-0.736-0.982-0.981 c-0.327-0.41-0.737-0.655-1.064-0.901c-0.655-0.41-1.309-0.736-1.964-0.982c-1.31-0.409-2.701-0.409-4.011,0 c-0.573,0.164-1.228,0.491-1.801,0.818h-0.082c-0.409,0.246-0.818,0.573-1.228,0.901c-0.409,0.327-0.819,0.817-1.228,1.227 c-0.573,0.655-1.146,1.474-1.719,2.456l-40.436,69.985l-4.584,7.858L87.454,379.422c-1.228,2.046-1.801,4.011-1.801,5.729 c-0.082,1.802,0.409,3.438,1.473,4.748c0.765,0.99,1.912,1.746,3.28,2.308c0.092,0.036,0.222,0.038,0.318,0.073 c1.056,0.396,2.172,0.744,3.524,0.811c0.328,0.081,0.737,0.081,1.146,0.081h28.731l292.381,0.164c2.456,0,4.502-0.491,6.058-1.391 c0,0,0.081,0,0.081-0.082c1.801-0.982,2.947-2.456,3.438-4.257C426.574,385.725,426.41,383.515,425.346,381.141z M317.299,335.957 l-122.617-0.082c-8.758,0-12.278-6.22-7.94-13.751l61.39-106.164c4.338-7.531,11.541-7.531,15.879,0l61.227,106.246 C329.659,329.737,326.057,335.957,317.299,335.957z"></path> <path style="opacity:0.06;fill:#2E1919;" d="M264.012,101.366c-0.573-0.982-1.146-1.882-1.801-2.538 c-0.327-0.409-0.655-0.736-0.982-0.981c-0.327-0.328-0.737-0.573-1.064-0.819c-0.655-0.41-1.309-0.736-1.964-1.064 c-1.31-0.409-2.701-0.409-4.011,0c-0.655,0.164-1.228,0.41-1.801,0.736v0.082h-0.082c-0.409,0.246-0.818,0.573-1.228,0.901 c-0.409,0.327-0.819,0.817-1.228,1.227c-0.573,0.655-1.146,1.474-1.719,2.456l-40.436,69.985l-4.584,7.858L87.454,379.422 c-1.228,2.046-1.801,4.011-1.801,5.729c-0.082,1.802,0.409,3.438,1.473,4.748c0.765,0.99,1.912,1.746,3.28,2.308 c0.092,0.036,0.222,0.038,0.318,0.073c1.056,0.396,2.172,0.744,3.524,0.811c0.328,0.081,0.737,0.081,1.146,0.081h28.731 c-6.303,0-9.904-3.273-9.823-8.021c0.082-1.719,0.655-3.683,1.882-5.729l115.659-200.214l4.584-7.858l33.969-58.853 L264.012,101.366z"></path> </g> </g></svg>
+            </div>
+            <h3>Grupos reducidos</h3>
+            <p>Grupos pequeños para que todos hablen. Vibra tipo mesa/café, sin presión.</p>
+          </article>
+
+          <article class="card" data-animate data-delay="180">
+            <div class="icon" aria-hidden="true">
+              <svg height="30px" width="30px" version="1.1" id="_x34_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path style="fill:#6B3C3C;" d="M159.714,495.239c0,9.257,11.514,16.761,25.718,16.761c14.203,0,25.718-7.504,25.718-16.761v-50.713 c0-9.257-11.514-16.761-25.718-16.761c-14.204,0-25.718,7.504-25.718,16.761V495.239z"></path> <path style="fill:#7C4141;" d="M142.839,448.109c0,9.257,19.069,16.761,42.593,16.761c23.523,0,42.593-7.504,42.593-16.761v-50.713 c0-9.257-19.069-16.761-42.593-16.761c-23.523,0-42.593,7.504-42.593,16.761V448.109z"></path> <path style="opacity:0.1;fill:#040000;" d="M142.839,424.194c0,9.257,19.069,16.761,42.593,16.761 c23.523,0,42.593-7.504,42.593-16.761v-50.713c0-9.257-19.069-16.761-42.593-16.761c-23.523,0-42.593,7.504-42.593,16.761V424.194z "></path> <path style="fill:#EA5B5B;" d="M370.864,172.743v238.222c0,9.254-7.572,16.825-16.826,16.825H16.826 C7.572,427.79,0,420.219,0,410.965V172.743C0,77.748,77.748,0,172.743,0h25.378c29.935,0,58.118,7.712,82.796,21.243 c28.884,15.914,52.79,39.891,68.704,68.774C363.152,114.624,370.864,142.877,370.864,172.743z"></path> <path style="fill:#693B3B;" d="M316.856,262.264H54.008c-21.261,0-38.657-17.395-38.657-38.657v-4.972 c0-15.946,13.047-28.993,28.992-28.993H326.52c15.946,0,28.992,13.047,28.992,28.993v4.972 C355.513,244.869,338.117,262.264,316.856,262.264z"></path> <path style="fill:#C63A38;" d="M351.938,226.844H18.926c-4.623,0-8.406-3.783-8.406-8.406v-3.707 c0-23.118,18.915-42.032,42.032-42.032h265.76c23.118,0,42.032,18.914,42.032,42.032v3.707 C360.344,223.061,356.561,226.844,351.938,226.844z"></path> <g> <path style="fill:#ECE5BE;" d="M132.852,113.082c-0.841-1.822-1.963-3.435-3.505-4.837c-1.472-1.402-3.365-2.524-5.469-3.295 c-2.243-0.771-4.767-1.192-7.501-1.192H95.696v48.584h10.446v-18.298h10.235c2.734,0,5.258-0.351,7.501-1.192 c2.103-0.771,3.996-1.893,5.469-3.225c1.542-1.472,2.664-3.015,3.505-4.908c0.841-1.823,1.192-3.786,1.192-5.749 C134.044,116.868,133.693,114.905,132.852,113.082z M121.564,123.738c-1.332,1.192-3.295,1.823-5.679,1.823h-9.744V112.17h9.744 c2.384,0,4.347,0.701,5.679,1.893c1.332,1.192,2.104,2.875,2.104,4.908C123.668,120.934,122.896,122.547,121.564,123.738z"></path> <path style="fill:#ECE5BE;" d="M181.155,121.775c-0.07-1.823-0.28-3.576-0.701-5.118c-0.28-1.612-0.841-3.015-1.542-4.417 c-0.701-1.262-1.823-2.524-3.155-3.786c-1.823-1.612-3.786-2.874-6.099-3.786c-2.384-0.841-5.048-1.262-8.133-1.262 s-5.818,0.421-8.132,1.262c-2.384,0.911-4.346,2.173-6.24,3.786c-1.262,1.262-2.383,2.524-3.085,3.786 c-0.701,1.402-1.262,2.804-1.542,4.417c-0.421,1.542-0.561,3.295-0.631,5.118c-0.07,1.893-0.14,3.996-0.14,6.239 c0,2.384,0.07,4.487,0.14,6.31c0.07,1.893,0.211,3.576,0.631,5.188c0.28,1.542,0.841,3.014,1.542,4.276 c0.701,1.402,1.823,2.594,3.085,3.926c1.893,1.543,3.856,2.804,6.24,3.716c2.314,0.911,5.048,1.332,8.132,1.332 s5.749-0.421,8.133-1.332c2.313-0.911,4.276-2.173,6.099-3.716c1.332-1.332,2.454-2.524,3.155-3.926 c0.701-1.262,1.262-2.734,1.542-4.276c0.421-1.612,0.631-3.295,0.701-5.188c0.07-1.823,0.14-3.926,0.14-6.31 C181.295,125.771,181.225,123.668,181.155,121.775z M170.639,133.834c-0.07,1.542-0.21,2.734-0.421,3.716 c-0.21,1.051-0.49,1.822-0.771,2.383c-0.351,0.631-0.701,1.262-1.192,1.753c-0.841,0.771-1.753,1.332-2.875,1.823 c-1.121,0.491-2.383,0.771-3.856,0.771c-1.472,0-2.734-0.28-3.926-0.771c-1.051-0.491-2.033-1.052-2.874-1.823 c-0.491-0.491-0.911-1.121-1.192-1.753c-0.351-0.561-0.561-1.332-0.771-2.383c-0.21-0.982-0.35-2.173-0.421-3.716 c-0.07-1.472-0.07-3.435-0.07-5.819c0-2.243,0-4.206,0.07-5.679c0.07-1.542,0.21-2.804,0.421-3.856 c0.211-0.982,0.421-1.753,0.771-2.383c0.28-0.631,0.701-1.192,1.192-1.683c0.841-0.771,1.823-1.402,2.874-1.822 c1.192-0.561,2.454-0.771,3.926-0.771c1.472,0,2.734,0.211,3.856,0.771c1.122,0.421,2.033,1.051,2.875,1.822 c0.491,0.491,0.841,1.052,1.192,1.683c0.281,0.631,0.561,1.402,0.771,2.383c0.211,1.052,0.351,2.314,0.421,3.856 c0.14,1.472,0.14,3.435,0.14,5.679C170.779,130.398,170.779,132.361,170.639,133.834z"></path> <path style="fill:#ECE5BE;" d="M227.706,132.151c-0.631-1.753-1.682-3.155-3.155-4.347c-1.122-1.052-2.524-1.893-4.066-2.454 c-1.682-0.631-3.646-1.051-6.099-1.402l-6.38-0.841c-1.122-0.14-2.173-0.351-2.944-0.701c-0.701-0.28-1.402-0.771-1.893-1.192 c-0.631-0.491-0.982-0.982-1.262-1.612c-0.21-0.561-0.28-1.262-0.28-1.823c0-1.682,0.631-3.155,1.963-4.347 c1.332-1.262,3.435-1.823,6.24-1.823c1.682,0,3.576,0.21,5.468,0.561c2.033,0.421,3.856,1.332,5.468,2.804l6.59-5.959 c-2.314-2.033-4.767-3.505-7.572-4.347c-2.734-0.841-5.959-1.262-9.675-1.262c-2.874,0-5.538,0.351-7.852,1.052 c-2.243,0.701-4.206,1.753-5.889,3.014c-1.543,1.262-2.734,2.875-3.646,4.627c-0.841,1.822-1.262,3.856-1.262,5.959 c0,4.206,1.262,7.431,3.856,9.604c1.122,1.052,2.594,1.893,4.207,2.524c1.682,0.701,3.786,1.122,6.099,1.542l6.38,0.841 c1.402,0.21,2.384,0.421,3.015,0.631c0.631,0.211,1.332,0.561,1.823,0.982c1.122,1.052,1.612,2.384,1.612,4.066 c0,1.893-0.771,3.435-2.313,4.487c-1.683,1.051-4.066,1.542-7.221,1.542c-2.383,0-4.697-0.28-6.94-0.841 c-2.243-0.631-4.137-1.682-5.889-3.225l-6.73,6.1c2.594,2.454,5.538,4.066,8.693,5.048c3.155,0.911,6.8,1.402,10.796,1.402 c2.804,0,5.468-0.35,7.922-0.982c2.454-0.631,4.487-1.612,6.31-2.874c1.682-1.192,3.155-2.804,4.136-4.627 c0.982-1.753,1.543-3.926,1.543-6.24C228.758,135.867,228.337,133.904,227.706,132.151z"></path> <path style="fill:#ECE5BE;" d="M236.82,103.758v8.412h13.952v40.171h10.446V112.17h13.951v-8.412H236.82z"></path> </g> <g> <rect x="162.524" y="35.196" style="fill:#ECE5BE;" width="45.815" height="13.155"></rect> <rect x="178.854" y="56.063" style="fill:#ECE5BE;" width="13.155" height="38.248"></rect> <rect x="154.132" y="53.568" style="fill:#ECE5BE;" width="62.599" height="13.155"></rect> </g> <g style="opacity:0.18;"> <rect x="46.467" y="287.351" style="fill:#FFFFFF;" width="277.93" height="108.043"></rect> <path style="fill:#3D0204;" d="M35.053,275.94v130.889H335.81V275.94H35.053z M312.956,383.974H57.908v-85.179h255.048V383.974z"></path> </g> <rect x="69.978" y="314.438" style="fill:#7A4D4D;" width="17.428" height="55.898"></rect> </g> </g></svg>
+            </div>
+            <h3>Feedback discreto</h3>
+            <p>Correcciones puntuales (pronunciation + phrasing) sin cortar el flow de la charla.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         WHY
+    ========================= -->
+    <section id="why" class="section section--tint">
+      <div class="wrap">
+        <div class="split">
+          <div data-animate>
+            <h2 style="margin:0 0 8px; font-size:34px; letter-spacing:-.03em;">¿Por qué esto funciona?</h2>
+            <p class="muted" style="margin:0; line-height:1.65;">
+              El inglés avanzado se mantiene con <strong>exposición + intención</strong>:
+              hablar con gente real, de temas reales, con un ritmo constante.
+            </p>
+            <ul class="list">
+              <li><strong>Fluidez</strong> (menos traducción mental)</li>
+              <li><strong>Vocabulario vivo</strong> (expresiones actuales)</li>
+              <li><strong>Confianza</strong> (hablar sin perfeccionismo)</li>
+            </ul>
+          </div>
+
+          <div class="split__visual" aria-hidden="true">
+            <div class="bubble bubble--a" data-animate data-delay="80" data-parallax="0.6">
+              <div class="bubble__title">Topic deck</div>
+              <div class="bubble__text">work · travel · culture</div>
+            </div>
+            <div class="bubble bubble--b" data-animate data-delay="140" data-parallax="0.9">
+              <div class="bubble__title">Pronunciation</div>
+              <div class="bubble__text">quick micro-fixes</div>
+            </div>
+            <div class="bubble bubble--c" data-animate data-delay="200" data-parallax="1.2">
+              <div class="bubble__title">Confidence</div>
+              <div class="bubble__text">no judgment</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         TESTIMONIALS (avatar + name + comment only)
+    ========================= -->
+    <section id="testimonials" class="section">
+      <div class="wrap">
+        <div class="section__head" data-animate>
+          <h2>Opiniones</h2>
+          <p>Lo que suele pasar después de 2–3 encuentros:</p>
+        </div>
+
+        <div class="testimonials">
+          <div class="tcard" data-animate data-delay="60">
+            <img src="https://images.unsplash.com/photo-1548142813-c348350df52b?auto=format&fit=crop&w=140&h=140&q=70" alt="Flor" />
+            <div class="tmeta">
+              <strong>Flor</strong>
+              <p>“Tenía buen nivel, pero estaba oxidado. Acá vuelve a fluir en nada.”</p>
+            </div>
+          </div>
+
+          <div class="tcard" data-animate data-delay="120">
+            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=140&h=140&q=70" alt="Diego" />
+            <div class="tmeta">
+              <strong>Diego</strong>
+              <p>“No es una clase. Es una charla real con correcciones puntuales cuando hacen falta.”</p>
+            </div>
+          </div>
+
+          <div class="tcard" data-animate data-delay="180">
+            <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=140&h=140&q=70" alt="Mica" />
+            <div class="tmeta">
+              <strong>Mica</strong>
+              <p>“La vibra es relajada y todos son avanzados. Cero vergüenza para hablar.”</p>
+            </div>
+          </div>
+
+          <div class="tcard" data-animate data-delay="240">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=140&h=140&q=70" alt="Lau" />
+            <div class="tmeta">
+              <strong>Lau</strong>
+              <p>“Me ayudó para entrevistas y reuniones. Te da soltura de verdad.”</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         PRICING
+    ========================= -->
+    <section id="pricing" class="section section--pricing">
+      <div class="wrap">
+        <div class="section__head" data-animate>
+          <h2>Tarifas</h2>
+          <p>Elegí tu ritmo. Podés cambiar de plan mes a mes.</p>
+        </div>
+
+        <div class="segmented" data-animate data-delay="80" role="tablist" aria-label="Modalidad">
+          <div class="segmented__pill">
+            <button class="segmented__btn is-active" type="button" role="tab" aria-selected="true" data-tab="inperson">Presencial</button>
+            <button class="segmented__btn" type="button" role="tab" aria-selected="false" data-tab="online">Online</button>
+          </div>
+        </div>
+
+        <div class="pricing" data-tab-panel="inperson">
+          <article class="price" data-animate data-delay="60">
+            <h3>1 hora</h3>
+            <p class="muted">Ideal para mantener ritmo</p>
+            <div class="price__value"><span>$</span>xx.xxx <small>/ mes</small></div>
+            <ul>
+              <li>1 encuentro semanal</li>
+              <li>Grupal</li>
+              <li>Temas guiados</li>
+            </ul>
+            <a class="btn btn--primary" href="#contact">Quiero este plan</a>
+          </article>
+
+          <article class="price price--featured" data-animate data-delay="120">
+            <div class="tag">Más elegido</div>
+            <h3>2 horas</h3>
+            <p class="muted">Progreso visible</p>
+            <div class="price__value"><span>$</span>xx.xxx <small>/ mes</small></div>
+            <ul>
+              <li>2 encuentros semanales</li>
+              <li>Correcciones puntuales</li>
+              <li>Vocabulario activo</li>
+            </ul>
+            <a class="btn btn--primary" href="#contact">Sumarme</a>
+          </article>
+
+          <article class="price" data-animate data-delay="180">
+            <h3>3 horas</h3>
+            <p class="muted">Intensivo social</p>
+            <div class="price__value"><span>$</span>xx.xxx <small>/ mes</small></div>
+            <ul>
+              <li>2 días por semana</li>
+              <li>2 horas cada día</li>
+              <li>Dinámica tipo “mesa”</li>
+            </ul>
+            <a class="btn btn--primary" href="#contact">Me interesa</a>
+          </article>
+        </div>
+
+        <div class="pricing is-hidden" data-tab-panel="online">
+          <article class="price" data-animate data-delay="60">
+            <h3>Online | 1 hora</h3>
+            <p class="muted">Zoom / Meet</p>“No es clase. Es charla real con correccion
+            <div class="price__value"><span>$</span>xx.xxx <small>/ mes</small></div>
+            <ul>
+              <li>1 encuentro semanal</li>
+              <li>Grupal</li>
+              <li>Topic deck</li>
+            </ul>
+            <a class="btn btn--primary" href="#contact">Quiero este plan</a>
+          </article>
+
+          <article class="price price--featured" data-animate data-delay="120">
+            <div class="tag">Mejor equilibrio</div>
+            <h3>Online | 2 horas</h3>
+            <p class="muted">Más speaking time</p>
+            <div class="price__value"><span>$</span>xx.xxx <small>/ mes</small></div>
+            <ul>
+              <li>2 encuentros semanales</li>
+              <li>Feedback discreto</li>
+              <li>Grabación opcional*</li>
+            </ul>
+            <a class="btn btn--primary" href="#contact">Sumarme</a>
+          </article>
+
+          <article class="price" data-animate data-delay="180">
+            <h3>Online | 3 horas</h3>
+            <p class="muted">Intensivo</p>
+            <div class="price__value"><span>$</span>xx.xxx <small>/ mes</small></div>
+            <ul>
+              <li>2 días por semana</li>
+              <li>2 horas cada día</li>
+              <li>Dinámica debate</li>
+            </ul>
+            <a class="btn btn--primary" href="#contact">Me interesa</a>
+          </article>
+        </div>
+
+        <p class="footnote" data-animate data-delay="220">
+          * Precios en placeholder (<strong>xx.xxx</strong>). Reemplazalos por tus valores reales.
+        </p>
+
+        <!-- =========================
+             CONTACT (transparent)
+        ========================= -->
+        <div id="contact" class="contact" data-animate>
+          <h3>¡Quiero sumarme!</h3>
+          <p>Mandame un mensaje con tu nivel y disponibilidad. Te ubico en un grupo compatible.</p>
+
+          <div class="contact__actions">
+            <!-- EDITÁ TU WHATSAPP / EMAIL ACÁ -->
+            <a class="btn btn--primary" href="https://wa.me/+542216684751" target="_blank" rel="noopener">WhatsApp</a>
+            <a class="btn btn--ghost" href="mailto:tuemail@ejemplo.com?subject=English%20Meetups%20-%20Quiero%20sumarme">Email</a>
+          </div>
+
+          <p class="tiny muted" style="margin-top:10px;">Tip: cambiá el número de WhatsApp y el email acá arriba.</p>
+        </div>
+
+        <div class="footer">
+          <span>© <span id="y"></span> English Meetups</span>
+          <span>Landing ultra liviana · sin librerías</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (() => {
+      const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Year
+      const y = document.getElementById('y');
+      if (y) y.textContent = String(new Date().getFullYear());
+
+      // Smooth internal anchor scroll
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', (e) => {
+          const id = a.getAttribute('href');
+          if (!id || id === '#') return;
+          const el = document.querySelector(id);
+          if (!el) return;
+          e.preventDefault();
+          el.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+          history.pushState(null, '', id);
+        });
+      });
+
+      // Tabs (Presencial / Online)
+      const tabButtons = Array.from(document.querySelectorAll('[data-tab]'));
+      const panels = Array.from(document.querySelectorAll('[data-tab-panel]'));
+      tabButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const tab = btn.getAttribute('data-tab');
+          tabButtons.forEach(b => {
+            const active = b === btn;
+            b.classList.toggle('is-active', active);
+            b.setAttribute('aria-selected', active ? 'true' : 'false');
+          });
+          panels.forEach(p => {
+            const show = p.getAttribute('data-tab-panel') === tab;
+            p.classList.toggle('is-hidden', !show);
+          });
+        });
+      });
+
+      // Repeatable reveal observer (IMPORTANT: no unobserve)
+      if (!prefersReduced){
+        const els = Array.from(document.querySelectorAll('[data-animate]'));
+        const io = new IntersectionObserver((entries) => {
+          for (const ent of entries){
+            const el = ent.target;
+            const delay = Number(el.getAttribute('data-delay') || 0);
+            if (delay) el.style.transitionDelay = ent.isIntersecting ? `${delay}ms` : '0ms';
+            el.classList.toggle('in', ent.isIntersecting);
+          }
+        }, { threshold: 0.16, rootMargin: '10% 0px -10% 0px' });
+
+        els.forEach(el => io.observe(el));
+      } else {
+        document.querySelectorAll('[data-animate]').forEach(el => el.classList.add('in'));
+      }
+
+      // Light parallax (continuous)
+      const parallaxEls = Array.from(document.querySelectorAll('[data-parallax]'));
+      if (!prefersReduced && parallaxEls.length){
+        let ticking = false;
+        const onScroll = () => {
+          if (ticking) return;
+          ticking = true;
+          requestAnimationFrame(() => {
+            const vh = window.innerHeight || 800;
+            for (const el of parallaxEls){
+              const speed = Number(el.getAttribute('data-parallax') || 1);
+              const rect = el.getBoundingClientRect();
+              const elCenter = rect.top + rect.height / 2;
+              const dist = (elCenter - vh / 2) / (vh / 2);
+              const y = dist * 10 * speed; // subtle
+              const base = el.getAttribute('data-base-transform') || '';
+            const t = ` translateY(${y.toFixed(2)}px)`;
+            el.style.transform = (base + t).trim();
+
+            }
+            ticking = false;
+          });
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll);
+        onScroll();
+      }
+
+      // Rotating 5-comment column (infinite loop)
+      const frame = document.getElementById('rotatorFrame');
+      if (frame && !prefersReduced){
+        const items = Array.from(frame.querySelectorAll('[data-rotator-item]'));
+
+        function applyPositions(){
+          const ordered = Array.from(frame.querySelectorAll('[data-rotator-item]'));
+          ordered.forEach((el, idx) => {
+            el.classList.remove('pos0','pos1','pos2','pos3','pos4');
+            el.classList.add(`pos${idx}`);
+          });
+        }
+
+        // initial layout
+        applyPositions();
+
+        // Rotate: top moves to bottom, everyone shifts up
+        // Matches your request: "el de arriba baje" (visually the deck scrolls)
+        setInterval(() => {
+          const first = frame.querySelector('[data-rotator-item]');
+          if (!first) return;
+          frame.appendChild(first);
+          applyPositions();
+        }, 2200);
+      } else if (frame) {
+        // reduced motion: keep center visible, others hidden
+        const items = Array.from(frame.querySelectorAll('[data-rotator-item]'));
+        items.forEach((el, idx) => {
+          el.style.transition = 'none';
+          el.style.opacity = idx === 2 ? '1' : '0';
+        });
+      }
+
+      // ===== Sticky nav highlight + hide brand on scroll =====
+  const topbar = document.querySelector('.topbar');
+  const pill = document.querySelector('.nav__pill');
+  const navLinks = Array.from(document.querySelectorAll('.nav__link[href^="#"]'));
+
+  function setCurrentLink(link){
+    navLinks.forEach(a => a.classList.toggle('is-current', a === link));
+    if (!pill || !link) return;
+
+    const pillRect = pill.getBoundingClientRect();
+    const linkRect = link.getBoundingClientRect();
+    const left = (linkRect.left - pillRect.left) + pill.scrollLeft;
+    const width = linkRect.width;
+
+    pill.style.setProperty('--hl-left', `${left}px`);
+    pill.style.setProperty('--hl-width', `${width}px`);
+  }
+
+  // init highlight on first link
+  setCurrentLink(navLinks[0]);
+
+  // hide brand on scroll
+  const onTopScroll = () => {
+    const scrolled = window.scrollY > 30;
+    topbar && topbar.classList.toggle('is-scrolled', scrolled);
+  };
+  window.addEventListener('scroll', onTopScroll, { passive:true });
+  onTopScroll();
+
+  // Section observer for active state
+  const sectionIds = ['#top','#how', '#why', '#testimonials', '#pricing'];
+  const sections = sectionIds.map(id => document.querySelector(id)).filter(Boolean);
+
+  if (sections.length){
+    const ioNav = new IntersectionObserver((entries) => {
+      // elegimos el entry más visible
+      const visible = entries
+        .filter(e => e.isIntersecting)
+        .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+      if (!visible) return;
+
+      const id = '#' + visible.target.id;
+      const link = navLinks.find(a => a.getAttribute('href') === id);
+      if (link) setCurrentLink(link);
+    }, { threshold: [0.22, 0.35, 0.5], rootMargin: '-20% 0px -55% 0px' });
+
+    sections.forEach(sec => ioNav.observe(sec));
+  }
+
+  // keep highlight correct on resize
+  window.addEventListener('resize', () => {
+    const current = navLinks.find(a => a.classList.contains('is-current')) || navLinks[0];
+    setCurrentLink(current);
+    
+  });
+
+    })();
+  </script>
+</body>
+</html>
